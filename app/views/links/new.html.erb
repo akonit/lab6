@@ -1,0 +1,32 @@
+<h1>Новое назначение</h1>
+
+<%= form_for :link, url: links_path do |f| %>
+  <% if @link.errors.any? %>
+	  <div id="error_explanation">
+	    <h2><%= pluralize(@link.errors.count, "error") %> prohibited
+	      this link from being saved:</h2>
+	    <ul>
+	    <% @link.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	    </ul>
+	  </div>
+  <% end %>
+
+  <p>
+    <%= f.label :название_продукта%><br>
+    <%= select("link", "product_id", Product.find(:all).collect {|p| [ p.name, p.id ] }, {:prompt => 'Select'}) %>
+  </p>
+
+  <p>
+    <%= f.label :название_категории%><br>
+    <%= select("link", "category_id", Category.find(:all).collect {|c| [ c.name, c.id ] }, {:prompt => 'Select'}) %>
+  </p>
+
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Назад', links_path %>

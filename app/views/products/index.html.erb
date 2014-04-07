@@ -1,0 +1,26 @@
+<h1>Список продуктов</h1>
+ 
+<%= link_to 'Создать продукт', new_product_path %><br>
+<%= link_to 'Главная страница', root_path %><br><br>
+
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Описание</th>
+    <th>Средняя оценка</th>
+    <!--<th>Количество голосов</th>-->
+  </tr>
+ 
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.description %></td>
+      <td><%= product.mark %></td>
+      <!--<td><%= product.voters%></td>-->
+      <td><%= link_to 'Просмотреть', product_path(product) %></td>
+      <td><%= link_to 'Редактировать', edit_product_path(product) %></td>
+      <td><%= link_to 'Удалить', product_path(product),
+                    method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,20 @@
+<h1>Назначение категорий продуктам</h1>
+ 
+<%= link_to 'Назначить категорию', new_link_path %><br>
+<%= link_to 'Главная страница', root_path %><br><br>
+
+<table>
+  <tr>
+    <th>Название продукта</th>
+    <th>Название категории</th>
+  </tr>
+ 
+  <% @links.each do |link| %>
+    <tr>
+      <td><%= Product.find(link.product_id).name %></td>
+      <td><%= Category.find(link.category_id).name %></td>
+      <td><%= link_to 'Удалить', link_path(link),
+                    method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+    </tr>
+  <% end %>
+</table>
