@@ -18,6 +18,10 @@ class ProductsController < ApplicationController
 
     def show
 	    @product = Product.find(params[:id])
+	    @rating = Rating.where(product_id: @product.id, score: 0).first
+	    if @rating == nil
+	    	@rating = Rating.create(product_id: @product.id, score: 0)
+	    end
 	end
 
 	def index
@@ -51,6 +55,6 @@ class ProductsController < ApplicationController
 
     private
 	    def product_params
-	        params.require(:product).permit(:name, :description, :mark, :voters)
+	        params.require(:product).permit(:name, :description)
 	    end
 end

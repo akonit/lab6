@@ -17,15 +17,13 @@
     <th>Название</th>
     <th>Описание</th>
     <th>Средняя оценка</th>
-    <!--<th>Количество голосов</th>-->
   </tr>
  
   <% @products.each do |product| %>
     <tr>
       <td><%= product.name %></td>
       <td><%= product.description %></td>
-      <td><%= product.mark %></td>
-      <!--<td><%= product.voters%></td>-->
+      <td><%= product.average_rating %></td>
       <td><%= link_to 'Просмотреть', product_path(product) %></td>
       <td><%= link_to 'Редактировать', edit_product_path(product) %></td>
       <td><%= link_to 'Удалить', product_path(product),

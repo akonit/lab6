@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407193148) do
+ActiveRecord::Schema.define(version: 20140408192008) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -42,10 +42,17 @@ ActiveRecord::Schema.define(version: 20140407193148) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.float    "mark"
-    t.integer  "voters"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "ratings", force: true do |t|
+    t.integer  "product_id"
+    t.float    "score",      default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["product_id"], name: "index_ratings_on_product_id", using: :btree
 
 end

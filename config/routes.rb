@@ -21,6 +21,8 @@ Lab6::Application.routes.draw do
 
   resources :links
 
+  resources :ratings, only: :update
+
   # Example resource route with options:
   #   resources :products do
   #     member do
